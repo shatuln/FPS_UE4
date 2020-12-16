@@ -1,7 +1,13 @@
 # UE4 Project directories to ignore
 /Binaries/
 /DerivedDataCache/
-/Intermediate/
+/Intermediate/AssetRegistryCache/
+/Intermediate/Build/
+/Intermediate/Config/
+/Intermediate/DatasmithContentTemp/
+/Intermediate/ReimportCache/
+/Intermediate/CachedAssetRegistry.bin
+/Intermediate/TargetInfo.json
 /Saved/
 /Build/
 /.vs/

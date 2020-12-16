@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <None Include="..\..\FirstFPS.uproject" />
+    <Filter Include="Source">
+      <UniqueIdentifier>{5905C479-8F6A-4E21-80CA-1A2296F4A9F0}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Source\FirstFPS.Target.cs">
+      <Filter>Source</Filter>
+    </None>
+    <None Include="..\..\Source\FirstFPSEditor.Target.cs">
+      <Filter>Source</Filter>
+    </None>
+    <Filter Include="Config">
+      <UniqueIdentifier>{89E49236-E085-4ADD-9E9F-758BAD151B64}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Config\DefaultEditor.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultEngine.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultGame.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultInput.ini">
+      <Filter>Config</Filter>
+    </None>
+    <Filter Include="Source\FirstFPS">
+      <UniqueIdentifier>{33729F48-977F-4E9D-AABB-C58A2329418F}</UniqueIdentifier>
+    </Filter>
+    <ClCompile Include="..\..\Source\FirstFPS\AICharacter.cpp">
+      <Filter>Source\FirstFPS</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\FirstFPS\AICharacter.h">
+      <Filter>Source\FirstFPS</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\FirstFPS\AIPawn.cpp">
+      <Filter>Source\FirstFPS</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\FirstFPS\AIPawn.h">
+      <Filter>Source\FirstFPS</Filter>
+    </ClInclude>
+    <None Include="..\..\Source\FirstFPS\FirstFPS.Build.cs">
+      <Filter>Source\FirstFPS</Filter>
+    </None>
+    <ClCompile Include="..\..\Source\FirstFPS\FirstFPS.cpp">
+      <Filter>Source\FirstFPS</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\FirstFPS\FirstFPS.h">
+      <Filter>Source\FirstFPS</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\FirstFPS\FirstFPSGameModeBase.cpp">
+      <Filter>Source\FirstFPS</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\FirstFPS\FirstFPSGameModeBase.h">
+      <Filter>Source\FirstFPS</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\FirstFPS\PlayerCharacter.cpp">
+      <Filter>Source\FirstFPS</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\FirstFPS\PlayerCharacter.h">
+      <Filter>Source\FirstFPS</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\FirstFPS\Projectiles.cpp">
+      <Filter>Source\FirstFPS</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\FirstFPS\Projectiles.h">
+      <Filter>Source\FirstFPS</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\FirstFPS\TPMovementComponent.cpp">
+      <Filter>Source\FirstFPS</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\FirstFPS\TPMovementComponent.h">
+      <Filter>Source\FirstFPS</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\FirstFPS\TP_Controller.cpp">
+      <Filter>Source\FirstFPS</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\FirstFPS\TP_Controller.h">
+      <Filter>Source\FirstFPS</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\FirstFPS\WeaponGun.cpp">
+      <Filter>Source\FirstFPS</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\FirstFPS\WeaponGun.h">
+      <Filter>Source\FirstFPS</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
