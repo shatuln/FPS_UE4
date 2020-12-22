@@ -24,6 +24,6 @@ void AFirstFPSGameModeBase::BeginPlay() {
 	FActorSpawnParameters ActorSpawnParams;
 	ActorSpawnParams.Owner = this;
 	for (int i = 0; i < 1; ++i) {
-		GetWorld()->SpawnActor<AAICharacter>(AAICharacter::StaticClass(), SpawnPoint, SpawnRotation, ActorSpawnParams);
+		//GetWorld()->SpawnActor<AAICharacter>(AAICharacter::StaticClass(), SpawnPoint, SpawnRotation, ActorSpawnParams);
 	}
 }

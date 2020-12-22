@@ -123,4 +123,7 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Gameplay)
 		class UAnimMontage* FireAnimation;
 
+	UPROPERTY(VisibleAnywhere)
+		class UPawnNoiseEmitterComponent* PlayerNoiseEmitter;
+
 };

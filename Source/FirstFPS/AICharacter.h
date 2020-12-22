@@ -4,11 +4,13 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
-#include "Perception/AIPerceptionComponent.h"
-//#include "Perception/AISenseConfig.h"
-#include "Perception/AISenseConfig_Sight.h"
 #include "Components/CapsuleComponent.h"
+#include "BehaviorTree/BlackboardData.h"
+#include "BehaviorTree/BlackboardComponent.h"
+#include "BehaviorTree/BehaviorTree.h"
+#include "Blueprint/AIBlueprintHelperLibrary.h"
 #include "AIController.h"
+#include "TP_Controller.h"
 #include "AICharacter.generated.h"
 
 UCLASS()
@@ -34,15 +36,18 @@ public:
 	UPROPERTY()
 		USkeletalMeshComponent* TPMesh;
 
+	UPROPERTY()
+		UBehaviorTree* TPBehaviorTree;
+
+	UPROPERTY()
+		UBlackboardComponent* TPBlackboard;
+
 	UFUNCTION()
 		void OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPrimitiveComponent* OtherComponent, FVector NormalImpulse, const FHitResult& Hit);
 
 	UPROPERTY(EditAnywhere)
 		int HitPoints;
 
-	UPROPERTY()
-		UAIPerceptionComponent* TPPerception;
-
-	UFUNCTION()
-		void OnSense(const TArray<AActor*>& testActors);
+	UPROPERTY(EditDefaultsOnly, Category = "AIController")
+		TSubclassOf<class ATP_Controller> TPControllerClass;
 };

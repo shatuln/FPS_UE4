@@ -1,6 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 
+#include "GameFramework/CharacterMovementComponent.h"
 #include "AICharacter.h"
 #include "Projectiles.h"
 
@@ -22,43 +23,36 @@ AAICharacter::AAICharacter()
 
 		static ConstructorHelpers::FObjectFinder<UAnimBlueprint> TPAnimBP(TEXT("/Game/Mannequin/Animations/ThirdPerson_AnimBP.ThirdPerson_AnimBP"));
 		TPMesh->SetAnimInstanceClass(TPAnimBP.Object->GeneratedClass);
-		//TPMesh->SetCollisionEnabled(ECollisionEnabled::QueryAndPhysics);
-		//TPMesh->SetCollisionEnabled(true);
-		//TPMesh->SetSimulatePhysics(true);
 	}
 
-	TPPerception = CreateDefaultSubobject<UAIPerceptionComponent>(TEXT("TPPerception"));
-	if (TPPerception) {
-		UAISenseConfig_Sight* sightConfig = CreateDefaultSubobject<UAISenseConfig_Sight>(TEXT("SightConfig"));
-		if (sightConfig) {
-			sightConfig->SightRadius = 2000.0f;
-			sightConfig->LoseSightRadius = 2500.0f;
-			sightConfig->PeripheralVisionAngleDegrees = 90.0f;
-			sightConfig->DetectionByAffiliation.bDetectEnemies = true;
-			sightConfig->DetectionByAffiliation.bDetectNeutrals = true;
-		}
-		TPPerception->ConfigureSense(*sightConfig);
-		TPPerception->SetDominantSense(sightConfig->GetSenseImplementation());
-		TPPerception->OnPerceptionUpdated.AddDynamic(this, &AAICharacter::OnSense);
-	}
 
 	SetActorScale3D(FVector(1.3f, 1.3f, 1.3f));
 
-	static ConstructorHelpers::FObjectFinder<UBlueprint> TPControllerBP(TEXT("/Game/Mannequin/AI/AIC_TP.AIC_TP"));
-	AIControllerClass = TPControllerBP.Object->GeneratedClass;
+	bUseControllerRotationPitch = false;
+	bUseControllerRotationYaw = false;
+	bUseControllerRotationRoll = false;
+	GetCharacterMovement()->MaxWalkSpeed = 350.0f;
+	GetCharacterMovement()->bOrientRotationToMovement = true;
+	GetCharacterMovement()->RotationRate = FRotator(0.0f, 300.0f, 0.0f);
 
 	AutoPossessAI = EAutoPossessAI::PlacedInWorldOrSpawned;
+	static ConstructorHelpers::FObjectFinder<UBlueprint> TPControllerBP(TEXT("/Game/Mannequin/AI/AIC_TP.AIC_TP"));
+	AIControllerClass = TPControllerClass;
 
 	GetCapsuleComponent()->OnComponentHit.AddDynamic(this, &AAICharacter::OnHit);
 
+	
+
 	HitPoints = 100;
+	
 }
 
 // Called when the game starts or when spawned
 void AAICharacter::BeginPlay()
 {
 	Super::BeginPlay();
-	
+	//int temp = TPBlackboard->GetKeyID("vec");
+	//GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Red, "BB Key = " + FString::FromInt(temp));
 }
 
 // Called every frame
@@ -90,14 +84,4 @@ void AAICharacter::OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, 
 		
 	//	OtherComponent->AddImpulseAtLocation(ProjectileMovement->Velocity * 100.0f, Hit.ImpactPoint);
 	}
-}
-
-void AAICharacter::OnSense(const TArray<AActor*>& testActors) {
-	for (auto i : testActors) {
-		FVector location = i->GetActorLocation();
-		GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Red, "Location X = " + FString::SanitizeFloat(location.X));
-		GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Red, "Location Y = " + FString::SanitizeFloat(location.Y));
-		GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Red, "Location Z = " + FString::SanitizeFloat(location.Z));
-	}
-	GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Red, "I see you!");
 }

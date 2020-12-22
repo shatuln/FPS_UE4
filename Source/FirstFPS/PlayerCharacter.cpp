@@ -1,6 +1,6 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-
+#include "Components/PawnNoiseEmitterComponent.h"
 #include "PlayerCharacter.h"
 
 // Sets default values
@@ -60,15 +60,10 @@ APlayerCharacter::APlayerCharacter()
 			WeaponFrontLocation->SetRelativeLocation(FVector(0.2f, 48.4f, -10.6f));
 		}
 	}
-	/*TSubclassOf<class AWeaponGun> WeaponGunClass;
-	WeaponGun = CreateDefaultSubobject<AWeaponGun>(TEXT("WeaponGunObject"));
-	if (WeaponGun) {
-		//GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Red, "This is message from weapon");
-	}
-	FActorSpawnParameters spawnParams;
-	spawnParams.Owner = this;
-	AWeaponGun* Weapon = GetWorld()->SpawnActor<AWeaponGun>(FVector(100.0f, 100.0f, 100.0f), FRotator(0.0f, 0.0f, 0.0f), spawnParams);
-	Weapon->AttachToComponent(RootComponent, FAttachmentTransformRules::KeepRelativeTransform);*/
+
+	PlayerNoiseEmitter = CreateDefaultSubobject<UPawnNoiseEmitterComponent>(TEXT("NoiseEmitter"));
+	PlayerNoiseEmitter->SetAutoActivate(true);
+
 	static ConstructorHelpers::FObjectFinder<UAnimMontage> FireMontage(TEXT("/Game/FirstPerson/Animations/FirstPersonFire_Montage.FirstPersonFire_Montage"));
 	FireAnimation = FireMontage.Object;
 
@@ -91,6 +86,7 @@ void APlayerCharacter::BeginPlay()
 void APlayerCharacter::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+	PlayerNoiseEmitter->MakeNoise(this, 1.0f, GetActorLocation());
 
 }
 
@@ -126,6 +122,8 @@ void APlayerCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCom
 void APlayerCharacter::MoveForward(float Value)
 {
 	// Find out which way is "forward" and record that the player wants to move that way.
+	//PlayerNoiseEmitter->MakeNoise(this, 1.0f, GetActorLocation());
+	MakeNoise();
 	FVector Direction = FRotationMatrix(Controller->GetControlRotation()).GetScaledAxis(EAxis::X);
 	AddMovementInput(Direction, Value);
 }
@@ -133,6 +131,8 @@ void APlayerCharacter::MoveForward(float Value)
 void APlayerCharacter::MoveRight(float Value)
 {
 	// Find out which way is "right" and record that the player wants to move that way.
+	//PlayerNoiseEmitter->MakeNoise(this, 1.0f, GetActorLocation());
+	MakeNoise();
 	FVector Direction = FRotationMatrix(Controller->GetControlRotation()).GetScaledAxis(EAxis::Y);
 	AddMovementInput(Direction, Value);
 }
